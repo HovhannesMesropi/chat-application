@@ -1,10 +1,11 @@
 import { Express } from 'express';
-import { Model, ModelCtor, ModelStatic, Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize';
 
 import { UserModel } from '../../models/user';
 
 import dotenv from 'dotenv';
 import { Routing } from '../routing';
+import { DialogsModel } from '../../models/dialogs';
 
 dotenv.config();
 export class Core {
@@ -28,15 +29,17 @@ export class Core {
         this.sequalize = sequelize;
 
         this.testDBConnection();
-
+        
+        this.initModels();
         this.sequalize.sync({ force: false }).then(() => {
             this.initModules();
-            this.initModels();
+            
         })
     }
 
     private initModels() {
         UserModel(this.sequalize)
+        DialogsModel(this.sequalize)
     }
 
     private initModules() {
