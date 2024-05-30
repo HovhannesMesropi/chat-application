@@ -1,9 +1,7 @@
-import { Express, Request, Response, request } from 'express';
+import { Express, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import { Dialogs } from '../../models/dialogs';
 import { AuthGuardRequest, authGuard } from '../../middlewares/authGuard';
-import { User } from '../../models/user';
-import { Op } from 'sequelize';
 import moment from 'moment';
 
 export class DialogsRouting {
